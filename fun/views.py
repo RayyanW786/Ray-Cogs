@@ -87,6 +87,15 @@ class FastClickView(View):
                     discord.ButtonStyle.gray,
                     "Not this"
                 ))
+                
+    async def interaction_check(self, interaction: discord.Interaction) -> bool:
+        if interaction.user.id in [self.ctx.author.id, self.against.id]:
+            return True
+        await interaction.response.send_message(
+            "This FastClick game is not for you!\nUse `[p]fastclick [user]` to play your own game.",
+            ephemeral=True
+        )
+        return False
 
     async def on_wrong_click(self, inter: discord.Interaction) -> None:
         self.stop()
