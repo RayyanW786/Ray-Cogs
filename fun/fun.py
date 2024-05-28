@@ -65,7 +65,7 @@ class Fun(commands.Cog):
             ),
             author_id=against.id,
             am=discord.AllowedMentions(users=[against]),
-            ephemeral=True
+            ephemeral=False
         )
         if not value:
             await ctx.reply(f"{against.mention} has declined your request for a game of Fastclick!")
